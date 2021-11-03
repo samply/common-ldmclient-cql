@@ -26,7 +26,7 @@ import org.hl7.fhir.r4.model.CapabilityStatement;
 import org.hl7.fhir.r4.model.MeasureReport;
 
 /**
- * Client to communicate with the local datamanagement implementation "Samply BLAZE".
+ * Client to communicate with the local datamanagement implementation "Samply Blaze".
  */
 public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error> {
 
@@ -54,7 +54,7 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
 
   @Override
   public String getUserAgentInfo() {
-    return "BLAZE/" + getVersionString();
+    return "Blaze/" + getVersionString();
   }
 
   @Override
