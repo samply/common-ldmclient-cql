@@ -1,4 +1,3 @@
-UNMERGED BRANCH -CHANGES FROM OTHER SAMPLY TEAMS MISSING
 # Samply Common LDM Client CQL
 
 Samply Common LDM Client CQL is a library for the communication with **L**ocal **D**ata**m**anagement systems.
