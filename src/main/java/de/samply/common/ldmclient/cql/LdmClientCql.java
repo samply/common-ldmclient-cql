@@ -133,10 +133,10 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
     queryResultStatistic.setRequestId("1");
 
     for (MeasureReport.MeasureReportGroupStratifierComponent fhirStratifier : firstGroup
-        .getStratifier()) {
+            .getStratifier()) {
       Stratification stratification = new Stratification();
       stratification.setTitle(fhirStratifier.getCodeFirstRep().getText());
-      if (stratification.getTitle().equals("Custodian")){
+      if (stratification.getTitle().equals("Custodian")) {
         for (MeasureReport.StratifierGroupComponent fhirStratum : fhirStratifier.getStratum()) {
           Stratum stratum = new Stratum();
           stratum.setLabel(fhirStratum.getValue().getText());
@@ -147,9 +147,9 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
 
       for (MeasureReport.StratifierGroupComponent fhirStratum : fhirStratifier.getStratum()) {
         Stratum stratum = new Stratum();
-          stratum.setLabel(fhirStratum.getValue().getText());
-          stratum.setCount(fhirStratum.getPopulationFirstRep().getCount());
-          stratification.getStrata().add(stratum);
+        stratum.setLabel(fhirStratum.getValue().getText());
+        stratum.setCount(fhirStratum.getPopulationFirstRep().getCount());
+        stratification.getStrata().add(stratum);
       }
 
       queryResultStatistic.getStratification().add(stratification);
