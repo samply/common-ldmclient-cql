@@ -13,7 +13,6 @@ import de.samply.share.model.common.result.Stratum;
 import de.samply.share.model.cql.CqlResult;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.util.Objects;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.http.Consts;
