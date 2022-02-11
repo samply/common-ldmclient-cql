@@ -13,6 +13,7 @@ import de.samply.share.model.common.result.Stratum;
 import de.samply.share.model.cql.CqlResult;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
@@ -132,9 +133,17 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
     queryResultStatistic.setRequestId("1");
 
     for (MeasureReport.MeasureReportGroupStratifierComponent fhirStratifier : firstGroup
-        .getStratifier()) {
+            .getStratifier()) {
       Stratification stratification = new Stratification();
       stratification.setTitle(fhirStratifier.getCodeFirstRep().getText());
+      if (stratification.getTitle().equals("Custodian")) {
+        for (MeasureReport.StratifierGroupComponent fhirStratum : fhirStratifier.getStratum()) {
+          Stratum stratum = new Stratum();
+          stratum.setLabel(fhirStratum.getValue().getText());
+          stratum.setCount(fhirStratum.getPopulationFirstRep().getCount());
+          stratification.getStrata().add(stratum);
+        }
+      }
 
       for (MeasureReport.StratifierGroupComponent fhirStratum : fhirStratifier.getStratum()) {
         Stratum stratum = new Stratum();
