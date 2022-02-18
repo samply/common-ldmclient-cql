@@ -54,7 +54,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <common-ldmclient.version>6.0.0</common-ldmclient.version>
-        <hapi-fhir-structures-r4.version>5.5.1</hapi-fhir-structures-r4.version>
+        <hapi-fhir-structures-r4.version>5.7.0</hapi-fhir-structures-r4.version>
         <httpclient.version>4.5.13</httpclient.version>
     </properties>
 
