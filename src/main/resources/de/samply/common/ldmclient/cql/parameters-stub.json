@@ -1,0 +1,17 @@
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "periodStart",
+      "value": "2000"
+    },
+    {
+      "name": "periodEnd",
+      "value": "2030"
+    },
+    {
+      "name": "reportType",
+      "value": "subject-list"
+    }
+  ]
+}

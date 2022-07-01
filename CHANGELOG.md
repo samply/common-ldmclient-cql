@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.0 - 2020-07-01]
+## Added
+- create sublist for cql result
+
 ## [2.0.1 - 2020-01-27]
 ### Changed
 - Common ldmclient 6.0.1
