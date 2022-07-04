@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.SocketTimeoutException;
 
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import org.apache.commons.lang3.NotImplementedException;
@@ -175,21 +176,21 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
   /**
    * Create a sublist for an entity.
    *
-   * @param location the measure location url
+   * @param location the measure URI
    * @return location url for the sublist
    * @throws LdmClientException exception which can be thrown while posting the query to the ldm
    */
-  public String createSubList(String location) throws LdmClientException {
+  public String createSubList(URI location) throws LdmClientException {
     JsonObject parameter = loadParameterStub();
-    String uri = location + "/$evaluate-measure";
-    HttpPost httpPost = new HttpPost(uri);
+    location = location.resolve("/$evaluate-measure");
+    HttpPost httpPost = new HttpPost(location);
     httpPost.setHeader(HttpHeaders.CONTENT_TYPE, "application/fhir+json");
     HttpEntity entity = new StringEntity(parameter.toString(), Consts.UTF_8);
     httpPost.setEntity(entity);
     try (CloseableHttpResponse response = getHttpClient().execute(httpPost)) {
       int statusCode = response.getStatusLine().getStatusCode();
       if (statusCode != HttpStatus.SC_CREATED) {
-        logger.error(String.format("Sublist not created. Status code: %d, Response: %s",
+        logger.error(String.format("Measure report not created. Status code: %d, Response: %s",
             statusCode, EntityUtils.toString(response.getEntity(), Consts.UTF_8)));
         throw new LdmClientException("Request not created. Received status code " + statusCode);
       }
@@ -197,18 +198,19 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
       if (locationHeader == null) {
         throw new LdmClientException("Location header is missing");
       }
-      String subListUrl = resourceLocation(locationHeader.getValue());
-      if (subListUrl.equals("")) {
+      String measureReportUri = resourceLocation(locationHeader.getValue());
+      if (measureReportUri.equals("")) {
         throw new LdmClientException("Location header is empty");
       }
-      return getSubListLocation(subListUrl);
+      return getFirstSubjectListUri(measureReportUri);
     } catch (IOException e) {
       throw new LdmClientException(e);
     }
   }
 
-  private String getSubListLocation(String measureLocation) throws LdmClientException {
-    HttpGet httpGet = new HttpGet(measureLocation);
+  private String getFirstSubjectListUri(String measureReportUri) throws LdmClientException {
+    HttpGet httpGet = new HttpGet(measureReportUri);
+    httpGet.setHeader(HttpHeaders.ACCEPT, "application/fhir+json");
     try (CloseableHttpResponse response = getHttpClient().execute(httpGet)) {
       int statusCode = response.getStatusLine().getStatusCode();
       if (statusCode == HttpStatus.SC_OK) {
@@ -224,12 +226,11 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
         throw new LdmClientException(
             "Unexpected response code '" + statusCode
                 + "' while getting sublist from measure with URL '"
-                + measureLocation + "'");
+                + measureReportUri + "'");
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new LdmClientException(e);
     }
-    throw new LdmClientException("Sublist not found");
   }
 
   private static String resourceLocation(String location) {
