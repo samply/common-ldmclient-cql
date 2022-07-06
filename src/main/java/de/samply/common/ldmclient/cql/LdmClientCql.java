@@ -182,8 +182,14 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
    * @throws LdmClientException exception which can be thrown while posting the query to the ldm
    */
   public String createSubjectList(URI location) throws LdmClientException {
+    URI measureReportUri = createMeasureReport(location);
+    return getFirstSubjectListUri(measureReportUri);
+  }
+
+
+  URI createMeasureReport(URI location) throws LdmClientException {
     JsonObject parameter = loadParameterStub();
-    location = location.resolve(location + "/$evaluate-measure");
+    location = URI.create(location + "/$evaluate-measure");
     HttpPost httpPost = new HttpPost(location);
     httpPost.setHeader(HttpHeaders.CONTENT_TYPE, "application/fhir+json");
     HttpEntity entity = new StringEntity(parameter.toString(), Consts.UTF_8);
@@ -204,13 +210,13 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
       if (measureReportUri.equals("")) {
         throw new LdmClientException("Location header is empty");
       }
-      return getFirstSubjectListUri(measureReportUri);
+      return measureReportUri;
     } catch (IOException | URISyntaxException e) {
       throw new LdmClientException(e);
     }
   }
 
-  private String getFirstSubjectListUri(URI measureReportUri) throws LdmClientException {
+  String getFirstSubjectListUri(URI measureReportUri) throws LdmClientException {
     HttpGet httpGet = new HttpGet(measureReportUri);
     httpGet.setHeader(HttpHeaders.ACCEPT, "application/fhir+json");
     try (CloseableHttpResponse response = getHttpClient().execute(httpGet)) {

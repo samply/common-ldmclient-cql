@@ -1,0 +1,235 @@
+{
+  "date": "2022-07-06T06:09:37.647961628Z",
+  "group": [
+    {
+      "stratifier": [
+        {
+          "stratum": [
+            {
+              "value": {
+                "text": "female"
+              },
+              "population": [
+                {
+                  "subjectResults": {
+                    "reference": "List/DAOSEDNXBYQKUMRW"
+                  },
+                  "count": 56,
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                        "code": "initial-population"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "value": {
+                "text": "male"
+              },
+              "population": [
+                {
+                  "subjectResults": {
+                    "reference": "List/DAOSEDNXBYQKUMRV"
+                  },
+                  "count": 44,
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                        "code": "initial-population"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "code": [
+            {
+              "text": "Gender"
+            }
+          ]
+        },
+        {
+          "stratum": [
+            {
+              "value": {
+                "text": "20"
+              },
+              "population": [
+                {
+                  "subjectResults": {
+                    "reference": "List/DAOSEDNXBYQKUMR2"
+                  },
+                  "count": 22,
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                        "code": "initial-population"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "value": {
+                "text": "30"
+              },
+              "population": [
+                {
+                  "subjectResults": {
+                    "reference": "List/DAOSEDNXBYQKUMRX"
+                  },
+                  "count": 20,
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                        "code": "initial-population"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "value": {
+                "text": "40"
+              },
+              "population": [
+                {
+                  "subjectResults": {
+                    "reference": "List/DAOSEDNXBYQKUMRY"
+                  },
+                  "count": 22,
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                        "code": "initial-population"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "value": {
+                "text": "50"
+              },
+              "population": [
+                {
+                  "subjectResults": {
+                    "reference": "List/DAOSEDNXBYQKUMRZ"
+                  },
+                  "count": 16,
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                        "code": "initial-population"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "value": {
+                "text": "60"
+              },
+              "population": [
+                {
+                  "subjectResults": {
+                    "reference": "List/DAOSEDNXBYQKUMR3"
+                  },
+                  "count": 16,
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                        "code": "initial-population"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "value": {
+                "text": "70"
+              },
+              "population": [
+                {
+                  "subjectResults": {
+                    "reference": "List/DAOSEDNXBYQKUMR4"
+                  },
+                  "count": 4,
+                  "code": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                        "code": "initial-population"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "code": [
+            {
+              "text": "Age"
+            }
+          ]
+        }
+      ],
+      "population": [
+        {
+          "subjectResults": {
+            "reference": "List/DAOSEDNXBYQKUMRU"
+          },
+          "count": 100,
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "versionId": "333",
+    "lastUpdated": "2022-07-06T06:09:37.756Z"
+  },
+  "type": "subject-list",
+  "resourceType": "MeasureReport",
+  "measure": "http://localhost:8080/fhir/Measure/DALRE7BKVA6HY3IK",
+  "extension": [
+    {
+      "url": "https://samply.github.io/blaze/fhir/StructureDefinition/eval-duration",
+      "valueQuantity": {
+        "value": 0.072663273,
+        "unit": "s",
+        "system": "http://unitsofmeasure.org",
+        "code": "s"
+      }
+    }
+  ],
+  "status": "complete",
+  "id": "DAOSEDN3UFW4FXHB",
+  "period": {
+    "start": "2000",
+    "end": "2030"
+  }
+}
