@@ -206,11 +206,7 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
       if (locationHeader == null) {
         throw new LdmClientException("Location header is missing");
       }
-      URI measureReportUri = resourceLocation(locationHeader.getValue());
-      if (measureReportUri.equals("")) {
-        throw new LdmClientException("Location header is empty");
-      }
-      return measureReportUri;
+      return resourceLocation(locationHeader.getValue());
     } catch (IOException | URISyntaxException e) {
       throw new LdmClientException(e);
     }

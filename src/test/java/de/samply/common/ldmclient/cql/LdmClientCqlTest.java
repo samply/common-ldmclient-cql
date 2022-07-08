@@ -1,6 +1,5 @@
 package de.samply.common.ldmclient.cql;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
@@ -9,10 +8,10 @@ import static org.mockito.Mockito.when;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import de.samply.common.ldmclient.LdmClientException;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -20,7 +19,7 @@ import org.apache.http.ProtocolVersion;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.BasicHttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicStatusLine;
@@ -53,18 +52,22 @@ class LdmClientCqlTest {
     when(httpClient.execute(argThat(httpPostMatcher(measureReportUri + "/$evaluate-measure")))).thenReturn(response);
     when(response.getStatusLine()).thenReturn(statusLine(201));
     when(response.getFirstHeader("Location")).thenReturn(httpHeader());
+
     URI location = ldmClientCql.createMeasureReport(new URI(BASE_URL + measureReportUri));
+
     assertEquals(BASE_URL + "/fhir/MeasureReport/DAOSEDN3UFW4FXHB", location.getPath());
   }
 
   @Test
   void testGetFirstSubjectListUri() throws IOException, URISyntaxException, LdmClientException {
-    String subjectListUri = "/fhir/MeasureReport/DAOSEDN3UFW4FXHB";
+    String measureReportUri = "/fhir/MeasureReport/DAOSEDN3UFW4FXHB";
     CloseableHttpResponse response = mock(CloseableHttpResponse.class);
-    when(httpClient.execute(argThat(httpGetMatcher(subjectListUri)))).thenReturn(response);
+    when(httpClient.execute(argThat(httpGetMatcher(measureReportUri)))).thenReturn(response);
     when(response.getStatusLine()).thenReturn(statusLine(200));
     when(response.getEntity()).thenReturn(httpEntity(loadJson("measureReport.json").toString()));
-    String location = ldmClientCql.getFirstSubjectListUri(new URI(BASE_URL + subjectListUri));
+
+    String location = ldmClientCql.getFirstSubjectListUri(new URI(BASE_URL + measureReportUri));
+
     assertEquals(BASE_URL + "/List/DAOSEDNXBYQKUMRU", location);
   }
 
@@ -85,10 +88,8 @@ class LdmClientCqlTest {
         BASE_URL + "/fhir/MeasureReport/DAOSEDN3UFW4FXHB/_history/333");
   }
 
-  private BasicHttpEntity httpEntity(String content) {
-    BasicHttpEntity entity = new BasicHttpEntity();
-    entity.setContent(new ByteArrayInputStream(content.getBytes(UTF_8)));
-    return entity;
+  private StringEntity httpEntity(String content) throws UnsupportedEncodingException {
+    return new StringEntity(content);
   }
 
   private static JsonObject loadJson(String name) {
