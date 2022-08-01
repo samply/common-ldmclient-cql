@@ -7,16 +7,10 @@ jobs:
   check_version:
 
     runs-on: ubuntu-18.04
-    env:
-      GITHUB_WORKSPACE: /
     steps:
-      - name: Project Version check (Maven, NodeJS...)
-        uses: avides/actions-project-version-check@v1.2.1
-        id: actions_project_version_check
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          file-to-check: pom.xml
+      - name: Extract Maven version
+        run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+        id: project
 
-      - name: use-version-from-check
-        run:
-          echo ${{ steps.actions_project_version_check.outputs.version }}
+      - name: Show version
+        run: echo ${{ steps.project.outputs.version }}
