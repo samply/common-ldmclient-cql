@@ -14,9 +14,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
-      - name: Extract Maven version
-        run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-        id: project
-
-      - name: Show version
-        run: echo ${{ steps.project.outputs.version }}
+      - name: Check version
+        uses: avides/actions-project-version-check@v1.3.0
+      - with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          file-to-check: pom.xml
+      - name: use-version-from-check
+        run: ${{ steps.actions_project_version_check.outputs.version }}
