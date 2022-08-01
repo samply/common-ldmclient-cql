@@ -4,7 +4,7 @@ name: Test workflow
 on: [push]
 
 jobs:
-  show_version:
+  check_project_version:
 
     runs-on: ubuntu-latest
     steps:
@@ -19,5 +19,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           file-to-check: pom.xml
-      - name: use-version-from-check
-        run: ${{ steps.actions_project_version_check.outputs.version }}
+      - name: show version from check
+        run: echo ${{ steps.actions_project_version_check.outputs.version }}
