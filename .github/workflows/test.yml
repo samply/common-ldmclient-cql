@@ -16,6 +16,8 @@ jobs:
           java-version: 8
       - name: Check version
         uses: avides/actions-project-version-check@v1.3.0
-      - with:
+        with:
           token: ${{ secrets.GITHUB_TOKEN }}
           file-to-check: pom.xml
+      - name: use-version-from-check
+        run: ${{ steps.actions_project_version_check.outputs.version }}
