@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: avides/actions-project-version-check@latest
+      - name: Project Version check (Maven, NodeJS...)
+        uses: avides/actions-project-version-check@v1.3.0
         id: actions_project_version_check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
