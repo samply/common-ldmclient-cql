@@ -6,15 +6,14 @@ on: [push]
 jobs:
   check_version:
 
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-18.04
     steps:
       - name: Project Version check (Maven, NodeJS...)
         uses: avides/actions-project-version-check@v1.3.0
         id: actions_project_version_check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          file-to-check: package.json
+          file-to-check: ./package.json
 
       - name: use-version-from-check
         run:
