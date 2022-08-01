@@ -22,5 +22,7 @@ jobs:
       - name: show version from check
         run: echo ${{ steps.actions_project_version_check.outputs.version }}
 
-      - uses: vemel/update-changelog@0.0.1
-        id: changelog
+      - name: Run Changelog CI
+        uses: saadmk11/changelog-ci@v1.0.0
+        with:
+          committer_username: 'test'
