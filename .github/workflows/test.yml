@@ -7,6 +7,8 @@ jobs:
   check_version:
 
     runs-on: ubuntu-18.04
+    env:
+      GITHUB_WORKSPACE: /
     steps:
       - name: Project Version check (Maven, NodeJS...)
         uses: avides/actions-project-version-check@v1.2.1
