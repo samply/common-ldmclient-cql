@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Project Version check (Maven, NodeJS...)
-        uses: avides/actions-project-version-check@v1.3.0
+        uses: avides/actions-project-version-check@v1.2.1
         id: actions_project_version_check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          file-to-check: ./package.json
+          file-to-check: pom.xml
 
       - name: use-version-from-check
         run:
