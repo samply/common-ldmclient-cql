@@ -4,10 +4,16 @@ name: Test workflow
 on: [push]
 
 jobs:
-  check_version:
+  show_version:
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
       - name: Extract Maven version
         run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
         id: project
