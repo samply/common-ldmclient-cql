@@ -4,19 +4,17 @@ name: Test workflow
 on: [push]
 
 jobs:
-  build:
+  check_version:
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Latest Commit
-        uses: actions/checkout@v2
-
-      - name: Bump Version
-        id: bump
-        uses: nnichols/maven-version-bump-action@v3
+      - uses: avides/actions-project-version-check@latest
+        id: actions_project_version_check
         with:
-          github-token: ${{ secrets.github_token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          file-to-check: pom.xml
 
-      - name: Print Version
-        run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
+      - name: use-version-from-check
+        run:
+          echo ${{ steps.actions_project_version_check.outputs.version }}
