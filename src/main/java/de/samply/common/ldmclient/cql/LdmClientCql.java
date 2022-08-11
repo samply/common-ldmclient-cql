@@ -152,15 +152,6 @@ public class LdmClientCql extends LdmClientCqlQuery<CqlResult, CqlResult, Error>
         .getStratifier()) {
       Stratification stratification = new Stratification();
       stratification.setTitle(fhirStratifier.getCodeFirstRep().getText());
-      if (stratification.getTitle().equals("Custodian")) {
-        for (MeasureReport.StratifierGroupComponent fhirStratum : fhirStratifier.getStratum()) {
-          Stratum stratum = new Stratum();
-          stratum.setLabel(fhirStratum.getValue().getText());
-          stratum.setCount(fhirStratum.getPopulationFirstRep().getCount());
-          stratification.getStrata().add(stratum);
-        }
-      }
-
       for (MeasureReport.StratifierGroupComponent fhirStratum : fhirStratifier.getStratum()) {
         Stratum stratum = new Stratum();
         stratum.setLabel(fhirStratum.getValue().getText());

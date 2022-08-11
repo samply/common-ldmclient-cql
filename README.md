@@ -30,7 +30,7 @@ To use the module, include the following artifact in your project.
 <dependency>
     <groupId>de.samply</groupId>
     <artifactId>common-ldmclient.cql</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.1</version>
 </dependency>
 ``` 
 
