@@ -1,5 +1,8 @@
 # Samply Common LDM Client CQL
 
+[![Build](https://github.com/samply/common-ldmclient-cql/actions/workflows/build.yml/badge.svg)](https://github.com/samply/common-ldmclient-cql/actions/workflows/build.yml)
+![Latest Release](https://img.shields.io/github/v/release/samply/common-ldmclient-cql)
+
 Samply Common LDM Client CQL is a library for the communication with **L**ocal **D**ata**m**anagement systems.
 It extends the abstract Samply Common LDM Client.
 
@@ -36,7 +39,7 @@ To use the module, include the following artifact in your project.
 
 ## License
        
-Copyright 2020 - 2021 The Samply Community
+Copyright 2020 - 2022 The Samply Community
        
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
        

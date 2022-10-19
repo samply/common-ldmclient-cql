@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches:
+    - master
+    - develop
+    tags:
+    - '*.*.*'
+  pull_request:
+    branches:
+    - master
+    - develop
+  schedule:
+  - cron: '0 1 * * *'
+
+jobs:
+  build:
+    uses: samply/github-workflows/.github/workflows/maven.yml@publish-on-tag
+    with:
+      java-version: 8
+    secrets:
+      MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+      MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+      OSSRH_GPG_SECRET_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+      OSSRH_GPG_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
