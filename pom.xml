@@ -43,7 +43,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <common-ldmclient.version>6.0.1</common-ldmclient.version>
+        <common-ldmclient.version>6.1.0</common-ldmclient.version>
         <hapi-fhir-structures-r4.version>5.5.1</hapi-fhir-structures-r4.version>
         <httpclient.version>4.5.13</httpclient.version>
         <mockito-core.version>4.8.0</mockito-core.version>
