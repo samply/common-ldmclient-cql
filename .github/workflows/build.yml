@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    uses: samply/github-workflows/.github/workflows/maven.yml@publish-on-tag
+    uses: samply/github-workflows/.github/workflows/maven.yml@main
     with:
       java-version: 8
     secrets:
