@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>common-ldmclient.cql</artifactId>
-    <version>2.2-SNAPSHOT</version>
+    <version>2.1.4</version>
 
     <name>ldmclient-cql</name>
     <description>Local Data Management Client for Blaze</description>
