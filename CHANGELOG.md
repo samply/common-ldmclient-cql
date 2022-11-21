@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.1.3 - 2020-10-19]
+### Fixed
+- [Fix Parameters File](https://github.com/samply/searchbroker/pull/26) 
+
+## [2.1.3 - 2020-10-19]
 ### Security
 - Update Dependencies
 
